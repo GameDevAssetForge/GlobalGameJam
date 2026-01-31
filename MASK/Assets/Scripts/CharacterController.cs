@@ -1,35 +1,41 @@
-// using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
-    public InputActionAsset InputActions;
+    [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private UnityEngine.CharacterController controller;
+    [SerializeField] private float speed = 5f;
 
-    private InputAction i_moveAction;
-    private InputAction i_lookAction;
-    private InputAction i_interactAction;
+    private InputAction moveAction;
 
-    private void OnEnable()
+    private void Awake()
     {
-        InputActions.FindActionMap("Player").Enable();
+        if (controller == null) controller = GetComponent<UnityEngine.CharacterController>();
+        if (cameraTransform == null) cameraTransform = Camera.main.transform;
+
+        var map = inputActions.FindActionMap("Player", true);
+        moveAction = map.FindAction("Move", true);
     }
 
-    private void OnDisable()
-    {
-        InputActions.FindActionMap("Player").Disable();
-    }
+    private void OnEnable() => moveAction.Enable();
+    private void OnDisable() => moveAction.Disable();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Update()
     {
-        Debug.Log("allo");
-    }
+        Vector2 input = moveAction.ReadValue<Vector2>(); // x=A/D, y=W/S
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Camera-based directions flattened on the ground
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 move = (forward * input.y + right * input.x);
+
+        controller.Move(move * speed * Time.deltaTime);
     }
 }
