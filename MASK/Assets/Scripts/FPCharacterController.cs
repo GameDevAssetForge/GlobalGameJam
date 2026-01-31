@@ -9,6 +9,8 @@ public class FPCharacterController : MonoBehaviour
     [SerializeField] private float speed = 5f;
 
     private InputAction moveAction;
+    private InputAction interactAction;
+
 
     private void Awake()
     {
@@ -17,13 +19,29 @@ public class FPCharacterController : MonoBehaviour
 
         var map = inputActions.FindActionMap("Player", true);
         moveAction = map.FindAction("Move", true);
+        interactAction = map.FindAction("Interact", true);
     }
 
-    private void OnEnable() => moveAction.Enable();
-    private void OnDisable() => moveAction.Disable();
+    private void OnEnable()
+    {
+        moveAction.Enable();
+        interactAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        moveAction.Disable();
+        interactAction.Disable();
+    }
+
 
     private void Update()
     {
+        if (interactAction.WasPressedThisFrame())
+        {
+            Debug.Log("pressed interact key");
+        }
+
         Vector2 input = moveAction.ReadValue<Vector2>();
 
         Vector3 forward = cameraTransform.forward;
