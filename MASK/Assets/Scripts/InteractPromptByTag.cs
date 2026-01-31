@@ -7,7 +7,6 @@ public class InteractPromptByTag : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float maxDistance = 3f;
     [SerializeField] private LayerMask interactableLayer;
-
     [Header("UI")]
     [SerializeField] private CanvasGroup promptGroup;
     [SerializeField] private TMP_Text promptText;
@@ -18,7 +17,8 @@ public class InteractPromptByTag : MonoBehaviour
 
     private const string MSG_INSPECT = "Press E to inspect";
     private const string MSG_TALK = "Press E to talk to";
-
+    private bool overrideActive;
+    private string overrideText;
     private void Awake()
     {
         if (cameraTransform == null) cameraTransform = Camera.main.transform;
@@ -27,6 +27,12 @@ public class InteractPromptByTag : MonoBehaviour
 
     private void Update()
     {
+        if (overrideActive)
+        {
+            if (promptText.text != overrideText) promptText.text = overrideText;
+            Show(true);
+            return;
+        }
         bool show = false;
         string msg = "";
         int targetId = 0;
@@ -73,7 +79,20 @@ public class InteractPromptByTag : MonoBehaviour
         }
     }
 
+    public void SetOverride(string text)
+    {
+        overrideActive = true;
+        overrideText = text;
+    }
 
+    public void ClearOverride()
+    {
+        overrideActive = false;
+        overrideText = "";
+        lastShow = false;
+        lastMsg = "";
+        lastTargetId = 0;
+    }
     private void Show(bool show)
     {
         if (promptGroup == null) return;
