@@ -11,7 +11,7 @@ public class InteractPromptByTag : MonoBehaviour
     [Header("UI")]
     [SerializeField] private CanvasGroup promptGroup;
     [SerializeField] private TMP_Text promptText;
-
+    public GameObject CurrentTarget { get; private set; }
     private int lastTargetId = 0;
     private string lastMsg = "";
     private bool lastShow = false;
@@ -31,14 +31,27 @@ public class InteractPromptByTag : MonoBehaviour
         string msg = "";
         int targetId = 0;
 
+        CurrentTarget = null;
+
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward,
                 out RaycastHit hit, maxDistance, interactableLayer, QueryTriggerInteraction.Ignore))
         {
             GameObject go = hit.collider.transform.root.gameObject;
-            targetId = go.GetInstanceID();
 
-            if (go.CompareTag("Inspectable")) { show = true; msg = MSG_INSPECT; }
-            else if (go.CompareTag("NPC")) { show = true; msg = MSG_TALK; }
+            if (go.CompareTag("Inspectable"))
+            {
+                show = true;
+                msg = MSG_INSPECT;
+                CurrentTarget = go;
+                targetId = go.GetInstanceID();
+            }
+            else if (go.CompareTag("NPC"))
+            {
+                show = true;
+                msg = MSG_TALK;
+                CurrentTarget = go;
+                targetId = go.GetInstanceID();
+            }
         }
 
         if (show != lastShow || targetId != lastTargetId || msg != lastMsg)
@@ -58,8 +71,8 @@ public class InteractPromptByTag : MonoBehaviour
                 Show(false);
             }
         }
-
     }
+
 
     private void Show(bool show)
     {
