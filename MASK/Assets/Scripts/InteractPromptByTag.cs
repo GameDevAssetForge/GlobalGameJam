@@ -5,49 +5,67 @@ public class InteractPromptByTag : MonoBehaviour
 {
     [Header("Raycast")]
     [SerializeField] private Transform cameraTransform;
-    [SerializeField] private float maxDistance = 5f;
+    [SerializeField] private float maxDistance = 3f;
     [SerializeField] private LayerMask interactableLayer;
 
     [Header("UI")]
-    [SerializeField] private GameObject promptRoot;
+    [SerializeField] private CanvasGroup promptGroup;
     [SerializeField] private TMP_Text promptText;
+
+    private int lastTargetId = 0;
+    private string lastMsg = "";
+    private bool lastShow = false;
+
+    private const string MSG_INSPECT = "Press E to inspect";
+    private const string MSG_TALK = "Press E to talk to";
 
     private void Awake()
     {
         if (cameraTransform == null) cameraTransform = Camera.main.transform;
-        SetPrompt(false, "");
+        Show(false);
     }
 
     private void Update()
     {
-        // Debug.DrawRay(cameraTransform.position, cameraTransform.forward * maxDistance, Color.green); Pour voir le raycast
+        bool show = false;
+        string msg = "";
+        int targetId = 0;
 
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward,
                 out RaycastHit hit, maxDistance, interactableLayer, QueryTriggerInteraction.Ignore))
         {
-            string msg = MessageFor(hit.collider.gameObject);
-            SetPrompt(!string.IsNullOrEmpty(msg), msg);
+            GameObject go = hit.collider.transform.root.gameObject;
+            targetId = go.GetInstanceID();
+
+            if (go.CompareTag("Inspectable")) { show = true; msg = MSG_INSPECT; }
+            else if (go.CompareTag("NPC")) { show = true; msg = MSG_TALK; }
         }
-        else
+
+        if (show != lastShow || targetId != lastTargetId || msg != lastMsg)
         {
-            SetPrompt(false, "");
+            lastShow = show;
+            lastTargetId = targetId;
+            lastMsg = msg;
+
+            if (show)
+            {
+                if (promptText.text != msg) promptText.text = msg;
+                Show(true);
+            }
+            else
+            {
+                if (promptText.text.Length != 0) promptText.text = "";
+                Show(false);
+            }
         }
+
     }
 
-
-    private string MessageFor(GameObject go)
+    private void Show(bool show)
     {
-
-        if (go.CompareTag("Inspectable")) return "Press E to inspect";
-        if (go.CompareTag("NPC")) return "Press E to talk to this person";
-
-        return "";
-    }
-
-    private void SetPrompt(bool show, string text)
-    {
-        if (promptText != null) promptText.text = text;
-        if (promptRoot != null) promptRoot.SetActive(show);
-        else if (promptText != null) promptText.gameObject.SetActive(show);
+        if (promptGroup == null) return;
+        promptGroup.alpha = show ? 1f : 0f;
+        promptGroup.blocksRaycasts = show;
+        promptGroup.interactable = show;
     }
 }
