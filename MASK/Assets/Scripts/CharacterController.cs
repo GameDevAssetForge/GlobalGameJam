@@ -24,9 +24,8 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
-        Vector2 input = moveAction.ReadValue<Vector2>(); // x=A/D, y=W/S
+        Vector2 input = moveAction.ReadValue<Vector2>();
 
-        // Camera-based directions flattened on the ground
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
         forward.y = 0f;

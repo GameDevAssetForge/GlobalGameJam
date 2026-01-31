@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class FirstPersonLook : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActions;
-    [SerializeField] private Transform cameraPivot; // camera or a parent "head" transform
-    [SerializeField] private float sensitivity = 0.10f; // start ~0.08–0.20
+    [SerializeField] private Transform cameraPivot;
+    [SerializeField] private float sensitivity = 0.10f;
     [SerializeField] private float minPitch = -89f;
     [SerializeField] private float maxPitch = 89f;
 
@@ -42,10 +42,8 @@ public class FirstPersonLook : MonoBehaviour
         float yaw = delta.x * sensitivity;
         float pitchDelta = delta.y * sensitivity;
 
-        // Yaw (left/right) rotates the body
         transform.Rotate(Vector3.up, yaw, Space.Self);
 
-        // Pitch (up/down) rotates the camera pivot
         pitch -= pitchDelta;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         cameraPivot.localEulerAngles = new Vector3(pitch, 0f, 0f);
