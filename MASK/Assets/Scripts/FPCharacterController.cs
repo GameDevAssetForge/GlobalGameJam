@@ -9,6 +9,10 @@ public class FPCharacterController : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private UnityEngine.CharacterController controller;
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float groundedStick = -2f;
+
+    private float verticalVelocity;
 
     [Header("Interaction")]
     [SerializeField] private InteractPromptByTag interactPrompt;
@@ -48,8 +52,6 @@ public class FPCharacterController : MonoBehaviour
         moveAction     = map.FindAction("Move", true);
         interactAction = map.FindAction("Interact", true);
 
-        // Create these actions in your Input Actions asset:
-        // Choice1 -> <Keyboard>/1, Choice2 -> <Keyboard>/2, Choice3 -> <Keyboard>/3
         choice1Action = map.FindAction("Choice1", true);
         choice2Action = map.FindAction("Choice2", true);
         choice3Action = map.FindAction("Choice3", true);
@@ -163,7 +165,18 @@ public class FPCharacterController : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        Vector3 move = forward * input.y + right * input.x;
-        controller.Move(move * speed * Time.deltaTime);
-    }
+        Vector3 horizontalMove = (forward * input.y + right * input.x);
+
+        if (horizontalMove.sqrMagnitude > 1f) horizontalMove.Normalize();
+
+        if (controller.isGrounded && verticalVelocity < 0f)
+            verticalVelocity = groundedStick;
+
+        verticalVelocity += gravity * Time.deltaTime;
+
+        Vector3 velocity = horizontalMove * speed;
+        velocity.y = verticalVelocity;
+
+        controller.Move(velocity * Time.deltaTime);
+        }
 }
