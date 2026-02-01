@@ -322,8 +322,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99193791}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e816252a8850bb34f84c233720f81f46, type: 3}
-  m_Controller: {fileID: 9100000, guid: 0396c5cab5f552b468d304b049ef9d3f, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 97ea2d2379e6f764db289167e2b1af74, type: 3}
+  m_Controller: {fileID: 9100000, guid: 582ecfbe981802f47b8af5639a4ac850, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3916,8 +3916,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130369798}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e816252a8850bb34f84c233720f81f46, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1c76cd525492847a1bf87d4b4fd9febe, type: 2}
+  m_Avatar: {fileID: 9000000, guid: de58dbabe2e36dc4eb944b55f9952a95, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0396c5cab5f552b468d304b049ef9d3f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8249,7 +8249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.553
+      value: 5.92
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8257,11 +8257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.67017
+      value: 5.73
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.64201844
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalRotation.x
@@ -8269,7 +8269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7666892
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalRotation.z
@@ -8281,7 +8281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 100.115
       objectReference: {fileID: 0}
     - target: {fileID: 5540012572088538618, guid: ff93c5fc61aea4f2c94ff3c858c40a59, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
