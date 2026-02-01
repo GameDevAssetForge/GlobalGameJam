@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _Saturation_Layers
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -50,8 +50,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _Dither_Opacity: 0.05
-    - _Quantization_Level: 64
+    - _Dither_Opacity: -0.1
+    - _Quantization_Level: 8
     - _Saturation_Layers: 3
     - _Stencil: 0
     - _StencilComp: 8
