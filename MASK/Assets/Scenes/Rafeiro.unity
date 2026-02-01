@@ -1356,9 +1356,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1984057481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b9e60d69faf5b4d97e6a61dfaf4262, type: 3}
+  m_Script: {fileID: 11500000, guid: 00dbe23c278876e48820ed9c5ba98398, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NpcSpeechBubble
+  m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueInk
+  inkJson: {fileID: 4900000, guid: bb07c3a5073845d4589be9d92509d3e6, type: 3}
   group: {fileID: 1858981478}
   label: {fileID: 1640091530}
 --- !u!1 &2053467150
