@@ -3,27 +3,7 @@ guid: 85d4be7cfe57f9342a2462f327004271
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: d94d815fbf10841209227db2c47e4b74, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: f73829428e7ba447daaea7a83321598f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Voronoi.001
-    second: {fileID: 2100000, guid: bea3a83dba0c1449a816eec6d41608a5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Voronoi.004
-    second: {fileID: 2100000, guid: d263b82853d2b4e04ba03e6b2b72646f, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
