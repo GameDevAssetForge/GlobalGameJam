@@ -21,7 +21,6 @@ public class NpcDialogueInk : MonoBehaviour
     {
         ResetStory();
         Hide();
-        ShowLine("TEST");
     }
 
     public string GetChoicesText(int max = 3)
