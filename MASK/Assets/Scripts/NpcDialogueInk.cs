@@ -109,6 +109,7 @@ public class NpcDialogueInk : MonoBehaviour
             string line = story.Continue().Trim();
             if (line.Length > 0)
                 ShowLine(line);
+            Advance();
         }
         else
         {
